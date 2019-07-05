@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/ProjectPS.ServicePS.BusinessLogic/bin
+/src/ProjectPS.ServicePS.BusinessLogic/obj
+/src/ProjectPS.ServicePS.BusinessLogic.Core/bin
+/src/ProjectPS.ServicePS.BusinessLogic.Core/obj
+/src/ProjectPS.ServicePS.CrossCutting.Identity/bin
+/src/ProjectPS.ServicePS.CrossCutting.Identity/obj
+/src/ProjectPS.ServicePS.CrossCutting.IoC/bin
+/src/ProjectPS.ServicePS.CrossCutting.IoC/obj
+/src/ProjectPS.ServicePS.DataAccess.Core/bin
+/src/ProjectPS.ServicePS.DataAccess.Core/obj
+/src/ProjectPS.ServicePS.DataAccess.DynamoDb/bin
+/src/ProjectPS.ServicePS.DataAccess.DynamoDb/obj
+/src/ProjectPS.ServicePS.Presentation/bin
+/src/ProjectPS.ServicePS.Presentation/obj
+/src/ProjectPS.ServicePS.Util.Options/bin
+/src/ProjectPS.ServicePS.Util.Options/obj
+
+/src/ProjectPS.ServicePS.API/bin/Debug/netcoreapp2.1
+/src/ProjectPS.ServicePS.API/obj
+/src/ProjectPS.ServicePS.API/ProjectPS.ServicePS.API.csproj.user

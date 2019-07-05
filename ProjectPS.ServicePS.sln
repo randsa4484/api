@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D8D614B-9E2A-431F-847B-DC9EB7C44ED5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C0D5C82C-6F3B-467E-BECA-833EB742AA0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. API Service", "1. API Service", "{0985A08D-33DB-42A7-8259-DCD010B6DFDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0541166B-C907-4234-97D1-956BBAE66C7C}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\build.definition.yml = scripts\build.definition.yml
+		scripts\infra.definition.yml = scripts\infra.definition.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Util", "2. Util", "{8DE1773C-8968-455F-AC31-24C689419AD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectPS.ServicePS.Util.Options", "src\ProjectPS.ServicePS.Util.Options\ProjectPS.ServicePS.Util.Options.csproj", "{2BD9FDCC-5BC0-4012-B37B-54896030ED94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectPS.ServicePS.API", "src\ProjectPS.ServicePS.API\ProjectPS.ServicePS.API.csproj", "{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BD9FDCC-5BC0-4012-B37B-54896030ED94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BD9FDCC-5BC0-4012-B37B-54896030ED94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BD9FDCC-5BC0-4012-B37B-54896030ED94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BD9FDCC-5BC0-4012-B37B-54896030ED94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0985A08D-33DB-42A7-8259-DCD010B6DFDD} = {9D8D614B-9E2A-431F-847B-DC9EB7C44ED5}
+		{8DE1773C-8968-455F-AC31-24C689419AD7} = {9D8D614B-9E2A-431F-847B-DC9EB7C44ED5}
+		{2BD9FDCC-5BC0-4012-B37B-54896030ED94} = {8DE1773C-8968-455F-AC31-24C689419AD7}
+		{3CC28FB8-0EC1-42E8-B74B-B55C6CBE6587} = {0985A08D-33DB-42A7-8259-DCD010B6DFDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5DF4A58-200B-4F65-9AC4-24AABD82D666}
+	EndGlobalSection
+EndGlobal

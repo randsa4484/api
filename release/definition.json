@@ -1,0 +1,154 @@
+{
+ "tasks": [
+	{
+	  "taskId": "d8b84976-e99a-4b86-b885-4849694435b0",
+	  "version": "2.*",
+	  "name": "Archive Executable",
+	  "inputs": {
+		"rootFolderOrFile": "$(System.DefaultWorkingDirectory)/$(BUILD_DEFINITION)/Executable",
+		"includeRootFolder": "false",
+		"archiveType": "zip",
+		"tarCompression": "gz",
+		"archiveFile": "$(Build.ArtifactStagingDirectory)/Executable/$(Build.BuildId).zip",
+		"replaceExistingArchive": "true"
+	  }
+	},
+	{
+	  "taskId": "3a219265-181c-4ed2-9a51-75a7f308f0d5",
+	  "version": "1.*",
+	  "name": "Upload Executable",
+	  "inputs": {
+		"awsCredentials": "PS_CLOUD_PROVIDER_ENDPOINT_ID",
+		"regionName": "$(AWS_REGION)",
+		"bucketName": "$(AWS_BUCKET_NAME)",
+		"sourceFolder": "$(Build.ArtifactStagingDirectory)/Executable",
+		"globExpressions": "$(Build.BuildId).zip",
+		"targetFolder": "$(AWS_BUCKET_FOLDER)",
+		"filesAcl": "private",
+		"createBucket": "true",
+		"keyManagement": "none",
+		"encryptionAlgorithm": "KMS",
+		"kmsMasterKeyId": "",
+		"customerKey": "",
+		"overwrite": "true",
+		"flattenFolders": "false",
+		"contentType": "",
+		"storageClass": "STANDARD",
+		"forcePathStyleAddressing": "false",
+		"logRequest": "false",
+		"logResponse": "false"
+	   }
+	},
+	{
+	  "taskId": "7ef7cdfa-aa45-42c5-93c8-d7603643dd99",
+	  "version": "1.*",
+	  "name": "Create/Update Stack",
+    "inputs": {
+      "awsCredentials": "PS_CLOUD_PROVIDER_ENDPOINT_ID",
+      "regionName": "$(AWS_REGION)",
+      "stackName": "$(AWS_STACK_NAME)",
+      "templateSource": "file",
+      "templateFile": "$(System.DefaultWorkingDirectory)/$(BUILD_DEFINITION)/Scripts/infra.definition.yml",
+      "s3BucketName": "",
+      "s3ObjectKey": "",
+      "templateUrl": "",
+      "templateParametersSource": "inline",
+      "templateParametersFile": "",
+      "templateParameters": "[ \n {\n \"ParameterKey\": \"BucketName\", \n \"ParameterValue\": \"$(AWS_BUCKET_NAME)\"\n }, \n {\n \"ParameterKey\": \"CodeKey\", \n \"ParameterValue\": \"$(AWS_BUCKET_FOLDER)/$(Build.BuildId).zip\"\n }, \n {\n \"ParameterKey\": \"WorkEnvironment\", \n \"ParameterValue\": \"$(ASPNETCORE_ENVIRONMENT)\"\n }, \n {\n \"ParameterKey\": \"WorkFeature\", \n \"ParameterValue\": \"$(ASPNETCORE_FEATURE)\"\n }, \n {\n \"ParameterKey\": \"FunctionMemorySize\", \n \"ParameterValue\": \"$(AWS_FN_MEMORY_SIZE)\"\n }, \n {\n \"ParameterKey\": \"FunctionTimeout\", \n \"ParameterValue\": \"$(AWS_FN_TIMEOUT)\"\n }, \n {\n \"ParameterKey\": \"ReadCapacityUnit\", \n \"ParameterValue\": \"$(AWS_DDB_READCAPACITYUNIT)\"\n }, \n {\n \"ParameterKey\": \"WriteCapacityUnit\", \n \"ParameterValue\": \"$(AWS_DDB_WRITECAPACITYUNIT)\"\n }, \n {\n \"ParameterKey\": \"AccessKey\", \n \"ParameterValue\": \"$(AWS_ACCESS_KEY)\"\n }, \n {\n \"ParameterKey\": \"SecretKey\", \n \"ParameterValue\": \"$(AWS_ACCESS_SECRET)\"\n }, \n {\n \"ParameterKey\": \"RegionKey\", \n \"ParameterValue\": \"$(AWS_REGION)\"\n }\n ]",
+      "useChangeSet": "true",
+      "changeSetName": "$(BUILD_DEFINITION)",
+      "description": "Changes for $(BUILD_DEFINITION)",
+      "autoExecuteChangeSet": "true",
+      "capabilityIAM": "true",
+      "capabilityNamedIAM": "true",
+      "roleARN": "",
+      "resourceTypes": "",
+      "notificationARNs": "",
+      "tags": "",
+      "monitorRollbackTriggers": "false",
+      "monitoringTimeInMinutes": "0",
+      "rollbackTriggerARNs": "",
+      "onFailure": "ROLLBACK",
+      "disableRollback": "false",
+      "warnWhenNoWorkNeeded": "true",
+      "outputVariable": "",
+      "timeoutInMins": "60",
+      "logRequest": "false",
+      "logResponse": "false"
+    }
+	}
+  ],
+ "variables": 
+ {
+	"AWS_ACCESS_KEY": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_ACCESS_KEY",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    },
+  "AWS_ACCESS_SECRET": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_ACCESS_SECRET",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    },
+  "AWS_REGION": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_ACCESS_REGION",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    },
+  "AWS_BUCKET_NAME": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_ORGANIZATION_NAMEPS_PROJECT_NAMEPS_SERVICE_NAME$(ASPNETCORE_ENVIRONMENT)$(ASPNETCORE_FEATURE)",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    },
+  "AWS_BUCKET_FOLDER": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_ORGANIZATION_NAMEPS_PROJECT_NAMEPS_SERVICE_NAME",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    },
+  "AWS_STACK_NAME": {
+    "allowOverride": false,
+    "isSecret": false,
+    "value": "PS_ORGANIZATION_NAMEPS_PROJECT_NAMEPS_SERVICE_NAME$(ASPNETCORE_ENVIRONMENT)$(ASPNETCORE_FEATURE)",
+    "scope": {
+      "key": 2147483647,
+      "value": "Release",
+      "isDefault": true
+    }
+  },
+	"BUILD_DEFINITION": {
+      "allowOverride": false,
+      "isSecret": false,
+      "value": "PS_COMMIT_STAGE_NAME",
+      "scope": {
+        "key": 2147483647,
+        "value": "Release",
+        "isDefault": true
+      }
+    }
+  }
+}
